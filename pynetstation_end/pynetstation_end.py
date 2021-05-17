@@ -29,7 +29,7 @@ class pynetstation_end(item):
 	"""
 
 	# Provide an informative description for your plug-in.
-	description = u'Start recording in Netstation'
+	description = 'Start recording in Netstation'
 
 	def reset(self):
 
@@ -59,10 +59,10 @@ class pynetstation_end(item):
 		self.set_item_onset(self.time())			
 
 		
-		if(self.get(u'nsOnOff') == u'yes'):
-			print "Netstation ending session and disconnecting"
+		if(self.get('nsOnOff') == 'yes'):
+			print("Netstation ending session and disconnecting")
 			self.experiment.ns.EndSession()
-			if(self.experiment.get(u'threadoption')==u'Simple'):
+			if(self.experiment.get('threadoption')=='Simple'):
 				self.experiment.ns.disconnect()
 			else:
 				self.experiment.ns.finalize()

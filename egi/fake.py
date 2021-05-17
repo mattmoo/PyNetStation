@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: cp1251 -*- 
-import simple as internal
+from . import simple as internal
 import sys
 
 Error = internal.Eggog
@@ -11,7 +11,7 @@ def Print(*args, **kwargs):
     write = sys.stdout.write
     write(" Netstation [fake]: ")
     for arg in args: write(repr(arg))
-    for (k, v) in kwargs.iteritems(): write("%s=%s" % (k, v))
+    for (k, v) in kwargs.items(): write("%s=%s" % (k, v))
     write('\n')
 
 
@@ -39,7 +39,7 @@ class Netstation:
     def enumerate_responses(self):
         self.checkExists()
         n_available = 0
-        for i in xrange(n_available):
+        for i in range(n_available):
             data = self._get()
             yield data
 
@@ -56,7 +56,7 @@ class Netstation:
     def finalize(self, seconds_timeout=2):
         self.checkExists()
         Print('finalize( timeout: %s seconds )' % (seconds_timeout,))
-        print " egi: stopping ... "
+        print(" egi: stopping ... ")
         self.objectExists = 0
         self = None
 
@@ -124,6 +124,6 @@ class Netstation:
 
 
 if __name__ == "__main__":
-    print __doc__
-    print "\n === \n"
-    print "module dir() listing: ", dir()
+    print(__doc__)
+    print("\n === \n")
+    print("module dir() listing: ", dir())

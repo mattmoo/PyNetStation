@@ -40,14 +40,14 @@ class FunctionWrappingHelper :
     def __init__(self, fn) :
 
         # nb: for py 2.5 , 'method.func_code.co_varnames' is 'method.im_func.func_code.co_varnames' (!)     
-        if type( fn ) is types.MethodType : fn = fn.im_func     
+        if type( fn ) is types.MethodType : fn = fn.__func__     
 
         args, varargs, keywords, defaults = inspect.getargspec( fn )
         self._args = args     
         self._varargs = varargs     
         self._keywords = keywords
         self._defaults = defaults
-        self._func_name = fn.func_name
+        self._func_name = fn.__name__
 
     ## ------------------------------------------  
 
@@ -99,7 +99,7 @@ class FunctionWrappingHelper :
         pairs = map(None, rnames, rvalues)     
 	'''     
 
-        pairs = zip(rnames, infinite_pad( rvalues, Undefined ) )     
+        pairs = list(zip(rnames, infinite_pad( rvalues, Undefined ) ))     
 
         pairs.reverse()
 
@@ -139,10 +139,10 @@ class FunctionWrappingHelper :
     def dump( self ) :  
         """ [debug] dump the function info to stdout """     
 
-        print '\n\n---\n\n', self.name, ':'
+        print('\n\n---\n\n', self.name, ':')
         for entry in self.enum_argentries(True) :
 
-            print '\t', entry, ','
+            print('\t', entry, ',')
         
 
 
@@ -150,20 +150,20 @@ class FunctionWrappingHelper :
 
 if __name__ == "__main__" :
 
-    print __doc__
-    print "\n === \n"
+    print(__doc__)
+    print("\n === \n")
     # print "module dir() listing: ", __dict__.keys()
-    print "module dir() listing: ", dir()
+    print("module dir() listing: ", dir())
 
     def test_fn0() : pass     
-    def test_fn1(arg) : print arg # just to have sth different     
+    def test_fn1(arg) : print(arg) # just to have sth different     
     def test_fn2(a,b,c) : pass
     def test_fn3(a,b,c,d=1,e="abc foods", *args) : pass
     def test_fn4(a,b,c,*args, **kwargs) : pass
     def test_fn5(a,b,c,d,e=1, f=1.0, g=[1,2,3], h = (1,2,3), i = "abc def", j = lambda x: x, k = FunctionWrappingHelper(lambda x: x), *args, **kwargs) :
-        print a,b,c,d,e,f,g,h,i,j,k
-        print "args: ", args
-        print "kwargs: ", kwargs
+        print(a,b,c,d,e,f,g,h,i,j,k)
+        print("args: ", args)
+        print("kwargs: ", kwargs)
 
         return a
 
@@ -174,10 +174,10 @@ if __name__ == "__main__" :
 
         w = FunctionWrappingHelper(f)
 
-        print '\n\n---\n\n', w.name, ':'
+        print('\n\n---\n\n', w.name, ':')
         for entry in w.enum_argentries( b_all = True ) :
 
-            print '\t', entry, ','
+            print('\t', entry, ',')
 
             
 

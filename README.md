@@ -1,7 +1,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 [![DOI](https://zenodo.org/badge/30547356.svg)](https://zenodo.org/badge/latestdoi/30547356)
 
-# Pynetstation-Plug-In
+# Pynetstation-Plug-In, converted from Python 2 to Python 3 syntax
 Plug-in for OpenSesame to use EGI's Netstation EEG software
 
 This plug-in includes 8 items:

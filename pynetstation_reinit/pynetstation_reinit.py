@@ -29,7 +29,7 @@ class pynetstation_reinit(item):
 	"""
 
 	# Provide an informative description for your plug-in.
-	description = u'Re-Initialize Netstation'
+	description = 'Re-Initialize Netstation'
 
 	def reset(self):
 
@@ -62,25 +62,25 @@ class pynetstation_reinit(item):
 		# you can pass a timestamp, such as returned by canvas.show().
 		self.set_item_onset(self.time())
 
-		if(self.get(u'nsOnOff') == u'yes'):
-			if(self.experiment.get(u'threadoption')==u'Simple'):
+		if(self.get('nsOnOff') == 'yes'):
+			if(self.experiment.get('threadoption')=='Simple'):
 				import egi.simple as egi
 				self.experiment.egi = egi
 				ms_localtime = self.experiment.egi.ms_localtime
 				self.experiment.ns = self.experiment.egi.Netstation()
-				self.experiment.ns.connect(self.experiment.get(u'ip'), self.experiment.get(u'port'))
+				self.experiment.ns.connect(self.experiment.get('ip'), self.experiment.get('port'))
 			else:
-				if(self.experiment.get(u'threadoption')==u'Threaded'):
+				if(self.experiment.get('threadoption')=='Threaded'):
 					import egi.threaded as egi
 				else:
 					import egi.fake as egi
 				self.experiment.egi = egi
 				ms_localtime = self.experiment.egi.ms_localtime
 				self.experiment.ns = self.experiment.egi.Netstation()
-				self.experiment.ns.initialize(self.experiment.get(u'ip'), self.experiment.get(u'port'))
+				self.experiment.ns.initialize(self.experiment.get('ip'), self.experiment.get('port'))
 			self.experiment.ns.BeginSession()
 			self.experiment.ns.sync()
-			print "Netstation Re-Initializing"
+			print("Netstation Re-Initializing")
 			
 class qtpynetstation_reinit(pynetstation_reinit, qtautoplugin):
 	

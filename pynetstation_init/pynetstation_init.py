@@ -29,7 +29,7 @@ class pynetstation_init(item):
 	"""
 
 	# Provide an informative description for your plug-in.
-	description = u'Initialize connection with Netstation'
+	description = 'Initialize connection with Netstation'
 
 	def reset(self):
 
@@ -42,10 +42,10 @@ class pynetstation_init(item):
 		# in info.json. If you do not provide default values, the plug-in will
 		# work, but the variables will be undefined when they are not explicitly
 		# set in the GUI.
-		self.threadoption = u'Threaded'
-		self.iptext = u'11.0.0.42'
-		self.porttext = u'55513'
-		self.nsOnOff = u'yes'
+		self.threadoption = 'Threaded'
+		self.iptext = '11.0.0.42'
+		self.porttext = '55513'
+		self.nsOnOff = 'yes'
 
 	def prepare(self):
 
@@ -62,32 +62,32 @@ class pynetstation_init(item):
 		# you can pass a timestamp, such as returned by canvas.show().
 		self.set_item_onset(self.time())
 		
-		self.experiment.set(u'nsOnOff', self.get(u'nsOnOff'))
-		self.experiment.set(u'threadoption', self.get(u'threadoption'))
-		if(self.experiment.get(u'nsOnOff') == u'yes'):
-			self.experiment.set(u'ip', self.get(u'iptext').encode('utf-8'))
-			self.experiment.set(u'port', int(self.get(u'porttext')))
-			print self.experiment.get(u'ip'), type(self.experiment.get(u'ip')), self.experiment.get(u'port'), type(self.experiment.get(u'port'))
-			if(self.experiment.get(u'threadoption')==u'Simple'):
+		self.experiment.set('nsOnOff', self.get('nsOnOff'))
+		self.experiment.set('threadoption', self.get('threadoption'))
+		if(self.experiment.get('nsOnOff') == 'yes'):
+			self.experiment.set('ip', self.get('iptext').encode('utf-8'))
+			self.experiment.set('port', int(self.get('porttext')))
+			print(self.experiment.get('ip'), type(self.experiment.get('ip')), self.experiment.get('port'), type(self.experiment.get('port')))
+			if(self.experiment.get('threadoption')=='Simple'):
 				import egi.simple as egi
 				self.experiment.egi = egi
 				ms_localtime = self.experiment.egi.ms_localtime
 				self.experiment.ns = self.experiment.egi.Netstation()
-				self.experiment.ns.connect(self.experiment.get(u'ip'), self.experiment.get(u'port'))
+				self.experiment.ns.connect(self.experiment.get('ip'), self.experiment.get('port'))
 			else:
-				if(self.experiment.get(u'threadoption')==u'Threaded'):
+				if(self.experiment.get('threadoption')=='Threaded'):
 					import egi.threaded as egi
 				else:
 					import egi.fake as egi
-					print 'Fake Session!!!!!!!!!!!!'
+					print('Fake Session!!!!!!!!!!!!')
 				self.experiment.egi = egi
 				ms_localtime = self.experiment.egi.ms_localtime
 				self.experiment.ns = self.experiment.egi.Netstation()
-				self.experiment.ns.initialize(self.experiment.get(u'ip'), self.experiment.get(u'port'))
+				self.experiment.ns.initialize(self.experiment.get('ip'), self.experiment.get('port'))
 			self.experiment.ns.BeginSession()
 			self.experiment.ns.sync()
 		else:
-			print "Netstation plug-ins disabled!"
+			print("Netstation plug-ins disabled!")
 			
 			
 class qtpynetstation_init(pynetstation_init, qtautoplugin):
@@ -151,7 +151,7 @@ class qtpynetstation_init(pynetstation_init, qtautoplugin):
 			Activates the relevant controls for each tracker.
 		"""
 
-		onOrOffNS = self.get(u'nsOnOff')==u'yes'
+		onOrOffNS = self.get('nsOnOff')=='yes'
 		self.threaded_combobox_widget.setEnabled(onOrOffNS)
 		self.ip_line_edit_widget.setEnabled(onOrOffNS)
 		self.port_line_edit_widget.setEnabled(onOrOffNS)

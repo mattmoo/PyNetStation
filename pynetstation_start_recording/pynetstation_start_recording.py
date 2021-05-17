@@ -29,7 +29,7 @@ class pynetstation_start_recording(item):
 	"""
 
 	# Provide an informative description for your plug-in.
-	description = u'Start recording in Netstation'
+	description = 'Start recording in Netstation'
 
 	def reset(self):
 
@@ -62,9 +62,9 @@ class pynetstation_start_recording(item):
 		# you can pass a timestamp, such as returned by canvas.show().
 		self.set_item_onset(self.time())
 
-		if(self.get(u'nsOnOff') == u'yes'):
+		if(self.get('nsOnOff') == 'yes'):
 			self.experiment.ns.StartRecording()
-			print "Netstation Recording"
+			print("Netstation Recording")
 			
 class qtpynetstation_start_recording(pynetstation_start_recording, qtautoplugin):
 	

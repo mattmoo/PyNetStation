@@ -29,7 +29,7 @@ class pynetstation_pause_recording(item):
 	"""
 
 	# Provide an informative description for your plug-in.
-	description = u'Pause recording in Netstation'
+	description = 'Pause recording in Netstation'
 
 	def reset(self):
 
@@ -62,9 +62,9 @@ class pynetstation_pause_recording(item):
 		# you can pass a timestamp, such as returned by canvas.show().
 		self.set_item_onset(self.time())		
 		
-		if(self.get(u'nsOnOff') == u'yes'):
+		if(self.get('nsOnOff') == 'yes'):
 			self.experiment.ns.StopRecording()
-			print "Netstation Recording Paused"
+			print("Netstation Recording Paused")
 		
 class qtpynetstation_pause_recording(pynetstation_pause_recording, qtautoplugin):
 	

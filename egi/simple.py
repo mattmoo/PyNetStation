@@ -5,7 +5,7 @@
 # inspired by Andrew Butcher's 'libnetstation' cpp library : [ http://code.google.com/p/libnetstation/ ]     
 #
 
-from __future__ import with_statement # for debug dumps     
+ # for debug dumps     
 
 
 """
@@ -22,7 +22,7 @@ from __future__ import with_statement # for debug dumps
 """     
 
 # import socket
-from socket_wrapper import Socket     
+from .socket_wrapper import Socket     
 import struct     
 
 import math, time # for time in milliseconds     
@@ -261,7 +261,7 @@ def _uniq( list ) :
         for e in list :     
                 d[e] = 1     
                 
-        return d.keys()     
+        return list(d.keys())     
         
 
 # -----------------------------------------------------------------------------
@@ -467,7 +467,7 @@ class _DataFormat :
           # also integers are 64-bit on 64-bit Unix, so we have to  check their size, 
           # see the 'check_table' below     
           type(1) : ( 'long', '=l' ) ,  # '=' -- translation is: four bytes
-          type(1L) : ( 'long', '=l' ) ,  # '=' -- translation is: four bytes
+          type(1) : ( 'long', '=l' ) ,  # '=' -- translation is: four bytes
           # type(1.0) : ( 'doub', '=d' ) ,  # " 64 bit I3E floating-point number "     
           ## temp test     
           ## type(1.0) : ( 'sing', '=f' ) ,  # " 64 bit I3E floating-point number "     
@@ -485,7 +485,7 @@ class _DataFormat :
         self._check_table = \
         { # type(1L) :  lambda x : int(x) , # if this fails then the next attempt would have probably been do
             type(1) : is_32_bit_int_compatible, 
-            type(1L) : is_32_bit_int_compatible, 
+            type(1) : is_32_bit_int_compatible, 
         }
 
     def _get_hints( self, data ) :     
@@ -544,7 +544,7 @@ class _DataFormat :
             Note that for the latter case the uniqueness of the generated key ids is not quaranteed .     
         """
 
-        keys, values = zip( *table.items() )
+        keys, values = list(zip( *list(table.items()) ))
         
         ## #debug 
         ## print "_pack_dict(): keys; values",  keys,  values
@@ -560,12 +560,12 @@ class _DataFormat :
         # 4-byte condition check
         if not pad :     
             # "try" ... 
-            map( Eggog.check_type, keys )     
-            map( Eggog.check_len, keys )
+            list(map( Eggog.check_type, keys ))     
+            list(map( Eggog.check_len, keys ))
 
         else : # else convert to string and truncate or pad
             
-            for i in xrange(len(keys)) :
+            for i in range(len(keys)) :
 
                 k = keys[i]     
                 if type(k) != type( '' ) :
@@ -590,7 +590,7 @@ class _DataFormat :
 
         nkeys_str = struct.pack( '=B', nkeys )     
 
-        values_packed = map( self._pack_data, values )
+        values_packed = list(map( self._pack_data, values ))
 
         items_packed = [nkeys_str, ] * ( 2 * nkeys + 1 )
         items_packed[1::2] = keys[:]
@@ -689,7 +689,7 @@ class _DataFormat :
         label_str = pstring( label )     
         description_str = pstring( description )     
 
-        if table is None or len( table.keys() ) <= 0 :
+        if table is None or len( list(table.keys()) ) <= 0 :
             # explicitly state that the number of keys is zero ( see above comment )     
             table_str = struct.pack( 'B', 0 )     
         else :     
@@ -799,7 +799,7 @@ class Netstation :
         self._socket.write( message )     
 
         # debug
-        print "BS: ", message     
+        print("BS: ", message)     
 
         return self.GetServerResponse()     
         
@@ -1068,9 +1068,9 @@ class Netstation :
 
 if __name__ == "__main__" :
 
-    print __doc__
-    print "\n === \n"
+    print(__doc__)
+    print("\n === \n")
     # print "module dir() listing: ", __dict__.keys()
-    print "module dir() listing: ", dir()
+    print("module dir() listing: ", dir())
 
 

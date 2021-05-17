@@ -29,7 +29,7 @@ class pynetstation_begin_trial(item):
 	"""
 
 	# Provide an informative description for your plug-in.
-	description = u'Sync time between computers at the start of each trial'
+	description = 'Sync time between computers at the start of each trial'
 
 	def reset(self):
 
@@ -42,9 +42,9 @@ class pynetstation_begin_trial(item):
 		# in info.json. If you do not provide default values, the plug-in will
 		# work, but the variables will be undefined when they are not explicitly
 		# set in the GUI.
-		self.beginEvent = u''
-		self.beginLabel = u''
-		self.beginDescription = u''
+		self.beginEvent = ''
+		self.beginLabel = ''
+		self.beginDescription = ''
 		
 	def prepare(self):
 
@@ -61,9 +61,9 @@ class pynetstation_begin_trial(item):
 		# you can pass a timestamp, such as returned by canvas.show().
 		self.set_item_onset(self.time())
 		
-		if(self.get(u'nsOnOff') == u'yes'):
+		if(self.get('nsOnOff') == 'yes'):
 			self.experiment.ns.sync()
-			if (self.beginEvent != u'') or (self.beginLabel != u'') or (self.beginDescription != u''):
+			if (self.beginEvent != '') or (self.beginLabel != '') or (self.beginDescription != ''):
 				event = str(self.beginEvent) 
 				label = str(self.beginLabel)
 				description = str(self.beginDescription)

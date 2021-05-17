@@ -21,8 +21,8 @@ from libopensesame.item import item
 from libqtopensesame.items.qtautoplugin import qtautoplugin
 from openexp.canvas import canvas
 
-blankText = u'Enter Variable Name Here'
-blankID = u'****'
+blankText = 'Enter Variable Name Here'
+blankID = '****'
 
 
 def make_fit(k):
@@ -41,7 +41,7 @@ class pynetstation_send_tags(item):
     """
 
     # Provide an informative description for your plug-in.
-    description = u'Send event tags to Netstation'
+    description = 'Send event tags to Netstation'
 
     def reset(self):
 
@@ -55,24 +55,24 @@ class pynetstation_send_tags(item):
         # work, but the variables will be undefined when they are not explicitly
         # set in the GUI.
 
-        self.eventTag = u'evt-'
-        self.labelCheck = u'yes'
-        self.labelText = u'Description of events or somesuch'
-        self.descriptionCheck = u'yes'
-        self.descriptionText = u'Description of events or somesuch'
-        self.tag1check = u'yes'
+        self.eventTag = 'evt-'
+        self.labelCheck = 'yes'
+        self.labelText = 'Description of events or somesuch'
+        self.descriptionCheck = 'yes'
+        self.descriptionText = 'Description of events or somesuch'
+        self.tag1check = 'yes'
         self.tagText1 = blankText
         self.tagID1 = blankID
-        self.tag2check = u'no'
+        self.tag2check = 'no'
         self.tagText2 = blankText
         self.tagID2 = blankID
-        self.tag3check = u'no'
+        self.tag3check = 'no'
         self.tagText3 = blankText
         self.tagID3 = blankID
-        self.tag4check = u'no'
+        self.tag4check = 'no'
         self.tagText4 = blankText
         self.tagID4 = blankID
-        self.tag5check = u'no'
+        self.tag5check = 'no'
         self.tagText5 = blankText
         self.tagID5 = blankID
 
@@ -91,27 +91,27 @@ class pynetstation_send_tags(item):
         # you can pass a timestamp, such as returned by canvas.show().
         self.set_item_onset(self.time())
 
-        if self.get(u'nsOnOff') == u'yes':
+        if self.get('nsOnOff') == 'yes':
             tagTable = {}
-            if self.get(u'labelCheck') != u'yes':
+            if self.get('labelCheck') != 'yes':
                 self.labelText = ''
-            if self.get(u'descriptionCheck') != u'yes':
+            if self.get('descriptionCheck') != 'yes':
                 self.descriptionText = ''
             for i in range(1, 6):
-                if self.get(u'tag%dcheck' % i) == u'yes':
+                if self.get('tag%dcheck' % i) == 'yes':
                     #
                     # Force all keys to become a utf-8 string, regardless of whether they're an int or string.
                     # keyI = ('%s' % self.get(u'tagID%d' % i)).encode('utf-8')
-                    keyI = str(self.get(u'tagID%d' % i))
+                    keyI = str(self.get('tagID%d' % i))
                     #
                     # check if variable exists. If not, use the literal.
                     try:
-                        valueI = self.get(self.get(u'tagText%d' % i))
+                        valueI = self.get(self.get('tagText%d' % i))
                     except:
-                        valueI = self.get(u'tagText%d' % i)
+                        valueI = self.get('tagText%d' % i)
                     #
                     # Differentiate between integers and strings while encoding strings in utf-8 for pynetstation.
-                    if type(valueI) == int or type(valueI) == long or type(valueI) == float:
+                    if type(valueI) == int or type(valueI) == int or type(valueI) == float:
                         tagTable[keyI] = (valueI)
                     else:
                         tagTable[keyI] = str(valueI)
@@ -127,9 +127,9 @@ class pynetstation_send_tags(item):
             # event = ('%s' % self.get(u'eventTag')).encode('utf-8')
             # label = ('%s' % self.get(u'labelText')).encode('utf-8')
             # description = ('%s' % self.get(u'descriptionText')).encode('utf-8')
-            event = str(self.get(u'eventTag'))
-            label = str(self.get(u'labelText'))
-            description = str(self.get(u'descriptionText'))
+            event = str(self.get('eventTag'))
+            label = str(self.get('labelText'))
+            description = str(self.get('descriptionText'))
             timestamp = self.experiment.egi.ms_localtime()
             table = tagTable
             self.experiment.window.callOnFlip(self.experiment.ns.send_timestamped_event, event, label, description,
@@ -200,26 +200,26 @@ class qtpynetstation_send_tags(pynetstation_send_tags, qtautoplugin):
         self.event_line_edit_widget.setEnabled(True)
 
         for i in range(1, 6):
-            self.set(u'tagID%d' % i, make_fit(str(self.get(u'tagID%d' % i))))
+            self.set('tagID%d' % i, make_fit(str(self.get('tagID%d' % i))))
 
-        onOffLabel = self.get(u'labelCheck') == u'yes'
+        onOffLabel = self.get('labelCheck') == 'yes'
         self.label_line_edit_widget.setEnabled(onOffLabel)
 
-        onOffDesc = self.get(u'descriptionCheck') == u'yes'
+        onOffDesc = self.get('descriptionCheck') == 'yes'
         self.description_line_edit_widget.setEnabled(onOffDesc)
 
-        onOffTag1 = self.get(u'tag1check') == u'yes'
+        onOffTag1 = self.get('tag1check') == 'yes'
         self.tag1_line_edit_widget.setEnabled(onOffTag1)
         self.tagid1_line_edit_widget.setEnabled(onOffTag1)
-        onOffTag2 = self.get(u'tag2check') == u'yes'
+        onOffTag2 = self.get('tag2check') == 'yes'
         self.tag2_line_edit_widget.setEnabled(onOffTag2)
         self.tagid2_line_edit_widget.setEnabled(onOffTag2)
-        onOffTag3 = self.get(u'tag3check') == u'yes'
+        onOffTag3 = self.get('tag3check') == 'yes'
         self.tag3_line_edit_widget.setEnabled(onOffTag3)
         self.tagid3_line_edit_widget.setEnabled(onOffTag3)
-        onOffTag4 = self.get(u'tag4check') == u'yes'
+        onOffTag4 = self.get('tag4check') == 'yes'
         self.tag4_line_edit_widget.setEnabled(onOffTag4)
         self.tagid4_line_edit_widget.setEnabled(onOffTag4)
-        onOffTag5 = self.get(u'tag5check') == u'yes'
+        onOffTag5 = self.get('tag5check') == 'yes'
         self.tag5_line_edit_widget.setEnabled(onOffTag5)
         self.tagid5_line_edit_widget.setEnabled(onOffTag5)

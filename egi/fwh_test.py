@@ -1,4 +1,4 @@
-import fwhelper as fwh
+from . import fwhelper as fwh
 
 FWH = fwh.FunctionWrappingHelper     
 
