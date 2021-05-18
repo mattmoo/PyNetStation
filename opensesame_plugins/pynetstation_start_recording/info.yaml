@@ -1,0 +1,5 @@
+description: PyNetStation Recording Start.
+priority: 90
+controls:
+  - type: "text"
+    label: "This item begins recording in Net Station. There are no settings to set here."

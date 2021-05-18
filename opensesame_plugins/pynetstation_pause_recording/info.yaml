@@ -1,0 +1,5 @@
+description: PyNetStation Recording Pause.
+priority: 60
+controls:
+  - type: "text"
+    label: "This item pauses recording in Net Station. There are no settings to set here."

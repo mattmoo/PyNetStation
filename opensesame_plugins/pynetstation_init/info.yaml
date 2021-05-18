@@ -1,0 +1,29 @@
+description: PyNetStation initializer.
+priority: 100
+controls:
+  - label: "NetStation plug-in On/Off switch"
+    name: OnOffcheckbox_widget
+    tooltip: "Check box if you want Netstation plug-ins to work while running experiment"
+    type: checkbox
+    var: nsOnOff
+  - label: "Choose whether to use Threaded connection(recommended) or Simple connection(legacy) and enter the IP address & port of the computer Net Station is on."
+    type: text
+  - label: "Select option"
+    name: threaded_combobox_widget
+    options:
+      - Threaded
+      - Simple
+      - Faker!
+    tooltip: "Select if you want to use Threaded connection with Net Station(faster/more reliable) or Simple connection(in case Threaded doesn't work)"
+    type: combobox
+    var: threadoption
+  - label: "Enter IP address"
+    name: ip_line_edit_widget
+    tooltip: "Enter IP of Net Station computer"
+    type: line_edit
+    var: iptext
+  - label: "Enter Port"
+    name: port_line_edit_widget
+    tooltip: "Enter Port of Net Station computer"
+    type: line_edit
+    var: porttext

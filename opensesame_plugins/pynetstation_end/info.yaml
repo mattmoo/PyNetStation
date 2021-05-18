@@ -1,0 +1,6 @@
+description: PyNetStation End Session.
+priority: 10
+controls:
+  - type: "text"
+    label: "This item ends the current session in Net Station. There are no settings to set here."
+
