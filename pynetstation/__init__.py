@@ -1,7 +1,7 @@
 
 
 """     
-    Python interface to interact with EGI Netstation     
+    Python interface to interact with EGI Net Station     
 
     simple.py is a wrapper for a single-threaded version,     
     threaded.py is a, eh, threaded version,     

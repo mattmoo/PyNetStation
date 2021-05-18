@@ -56,7 +56,7 @@ class Netstation:
     def finalize(self, seconds_timeout=2):
         self.checkExists()
         Print('finalize( timeout: %s seconds )' % (seconds_timeout,))
-        print(" egi: stopping ... ")
+        print("PyNetStation: stopping ... ")
         self.objectExists = 0
         self = None
 

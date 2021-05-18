@@ -69,22 +69,22 @@ class pynetstation_init(item):
 			self.experiment.set('port', int(self.get('porttext')))
 			print(self.experiment.get('ip'), type(self.experiment.get('ip')), self.experiment.get('port'), type(self.experiment.get('port')))
 			if(self.experiment.get('threadoption')=='Simple'):
-				import egi.simple as egi
-				self.experiment.egi = egi
-				ms_localtime = self.experiment.egi.ms_localtime
-				self.experiment.ns = self.experiment.egi.Netstation()
+				import PyNetStation.simple as PyNetStation
+				self.experiment.PyNetStation = PyNetStation
+				ms_localtime = self.experiment.PyNetStation.ms_localtime
+				self.experiment.ns = self.experiment.PyNetStation.Netstation()
 				self.experiment.ns.connect(self.experiment.get('ip'), self.experiment.get('port'))
 			else:
 				if(self.experiment.get('threadoption')=='Threaded'):
-					import egi.threaded as egi
+					import PyNetStation.threaded as PyNetStation
 				else:
-					import egi.fake as egi
+					import PyNetStation.fake as PyNetStation
 					print('Fake Session!!!!!!!!!!!!')
-				self.experiment.egi = egi
-				ms_localtime = self.experiment.egi.ms_localtime
-				self.experiment.ns = self.experiment.egi.Netstation()
+				self.experiment.PyNetStation = PyNetStation
+				ms_localtime = self.experiment.PyNetStation.ms_localtime
+				self.experiment.ns = self.experiment.PyNetStation.Netstation()
 				self.experiment.ns.initialize(self.experiment.get('ip'), self.experiment.get('port'))
-			self.experiment.ns.BeginSession()
+			self.experiment.ns.BPyNetStationnSession()
 			self.experiment.ns.sync()
 		else:
 			print("Netstation plug-ins disabled!")

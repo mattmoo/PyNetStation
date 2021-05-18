@@ -10,7 +10,7 @@
 
 """
     This module provides a simple Python wrapper
-    to the EGI Netstation GES hardware communication protocol;     
+    to the EGI Net Station GES hardware communication protocol;     
 
     ref.: see "EGI Hardware Technical Manual" of Dec 21 2006,
           Chapter 7 and Appendix G 
