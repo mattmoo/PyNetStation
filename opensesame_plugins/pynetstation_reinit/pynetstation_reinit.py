@@ -64,23 +64,23 @@ class pynetstation_reinit(item):
 
 		if(self.get('nsOnOff') == 'yes'):
 			if(self.experiment.get('threadoption')=='Simple'):
-				import egi.simple as egi
-				self.experiment.egi = egi
-				ms_localtime = self.experiment.egi.ms_localtime
-				self.experiment.ns = self.experiment.egi.Netstation()
+				import pynetstation.simple as pynetstation
+				self.experiment.pynetstation = pynetstation
+				ms_localtime = self.experiment.pynetstation.ms_localtime
+				self.experiment.ns = self.experiment.pynetstation.Netstation()
 				self.experiment.ns.connect(self.experiment.get('ip'), self.experiment.get('port'))
 			else:
 				if(self.experiment.get('threadoption')=='Threaded'):
-					import egi.threaded as egi
+					import pynetstation.threaded as pynetstation
 				else:
-					import egi.fake as egi
-				self.experiment.egi = egi
-				ms_localtime = self.experiment.egi.ms_localtime
-				self.experiment.ns = self.experiment.egi.Netstation()
+					import pynetstation.fake as pynetstation
+				self.experiment.pynetstation = pynetstation
+				ms_localtime = self.experiment.pynetstation.ms_localtime
+				self.experiment.ns = self.experiment.pynetstation.Netstation()
 				self.experiment.ns.initialize(self.experiment.get('ip'), self.experiment.get('port'))
 			self.experiment.ns.BeginSession()
 			self.experiment.ns.sync()
-			print("Netstation Re-Initializing")
+			print("PyNetStation Re-Initializing")
 			
 class qtpynetstation_reinit(pynetstation_reinit, qtautoplugin):
 	

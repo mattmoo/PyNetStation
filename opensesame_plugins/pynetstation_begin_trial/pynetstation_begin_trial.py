@@ -67,7 +67,7 @@ class pynetstation_begin_trial(item):
 				event = str(self.beginEvent) 
 				label = str(self.beginLabel)
 				description = str(self.beginDescription)
-				timestamp=self.experiment.egi.ms_localtime()
+				timestamp=self.experiment.pynetstation.ms_localtime()
 				self.experiment.ns.send_event(event, timestamp, label, description, table = None, pad = True)
 
 class qtpynetstation_begin_trial(pynetstation_begin_trial, qtautoplugin):

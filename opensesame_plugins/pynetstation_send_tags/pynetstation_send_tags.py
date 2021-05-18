@@ -130,7 +130,7 @@ class pynetstation_send_tags(item):
             event = str(self.get('eventTag'))
             label = str(self.get('labelText'))
             description = str(self.get('descriptionText'))
-            timestamp = self.experiment.egi.ms_localtime()
+            timestamp = self.experiment.pynetstation.ms_localtime()
             table = tagTable
             self.experiment.window.callOnFlip(self.experiment.ns.send_timestamped_event, event, label, description,
                                               table, pad=True)

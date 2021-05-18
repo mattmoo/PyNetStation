@@ -27,7 +27,7 @@ import struct
 
 import math, time # for time in milliseconds     
 
-import sys, exceptions # sys.
+import sys
 
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
@@ -36,7 +36,7 @@ import sys, exceptions # sys.
 # our very special exception     
 #
 
-class Eggog( exceptions.Exception ) :
+class Eggog( Exception ) :
     """
         general exception, will make things more specific if necessary ;
         at the moment it means that the server has returned an error --
@@ -86,7 +86,8 @@ class Eggog( exceptions.Exception ) :
 
             ret = int( i )
             if ret != i : 
-                raise exceptions.Exception("conversion failed")
+				e = ValueError("conversion failed")
+                raise e
 
         except :
             raise Eggog(  "'%s': failed to convert to a (Python) integer!" % (repr(i), )  )     

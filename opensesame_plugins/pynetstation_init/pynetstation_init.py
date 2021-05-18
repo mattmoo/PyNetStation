@@ -69,25 +69,25 @@ class pynetstation_init(item):
 			self.experiment.set('port', int(self.get('porttext')))
 			print(self.experiment.get('ip'), type(self.experiment.get('ip')), self.experiment.get('port'), type(self.experiment.get('port')))
 			if(self.experiment.get('threadoption')=='Simple'):
-				import PyNetStation.simple as PyNetStation
-				self.experiment.PyNetStation = PyNetStation
-				ms_localtime = self.experiment.PyNetStation.ms_localtime
-				self.experiment.ns = self.experiment.PyNetStation.Netstation()
+				import pynetstation.simple as pynetstation
+				self.experiment.pynetstation = pynetstation
+				ms_localtime = self.experiment.pynetstation.ms_localtime
+				self.experiment.ns = self.experiment.pynetstation.Netstation()
 				self.experiment.ns.connect(self.experiment.get('ip'), self.experiment.get('port'))
 			else:
 				if(self.experiment.get('threadoption')=='Threaded'):
-					import PyNetStation.threaded as PyNetStation
+					import pynetstation.threaded as pynetstation
 				else:
-					import PyNetStation.fake as PyNetStation
+					import pynetstation.fake as pynetstation
 					print('Fake Session!!!!!!!!!!!!')
-				self.experiment.PyNetStation = PyNetStation
-				ms_localtime = self.experiment.PyNetStation.ms_localtime
-				self.experiment.ns = self.experiment.PyNetStation.Netstation()
+				self.experiment.pynetstation = pynetstation
+				ms_localtime = self.experiment.pynetstation.ms_localtime
+				self.experiment.ns = self.experiment.pynetstation.Netstation()
 				self.experiment.ns.initialize(self.experiment.get('ip'), self.experiment.get('port'))
-			self.experiment.ns.BPyNetStationnSession()
+			self.experiment.ns.BeginSession()
 			self.experiment.ns.sync()
 		else:
-			print("Netstation plug-ins disabled!")
+			print("PyNetStation plug-in disabled!")
 			
 			
 class qtpynetstation_init(pynetstation_init, qtautoplugin):
