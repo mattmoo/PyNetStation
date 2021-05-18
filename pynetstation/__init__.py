@@ -11,4 +11,5 @@
     test files here .     
 
 """     
+__version__ = version = "0.2"
 

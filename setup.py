@@ -1,17 +1,8 @@
 #!/usr/bin/env python
 
 """
-This file is part of egi.
-PyGaze is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-PyGaze is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with qnotero.  If not, see <http://www.gnu.org/licenses/>.
+This file is part of PyNetStation.
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 """
 
 import os
@@ -19,7 +10,7 @@ import glob
 import pynetstation
 from setuptools import setup
 
-#print("Running setup for PyGaze version {}".format(pygaze.__version__))
+print("Running setup for PyNetStation version {}".format(pynetstation.__version__))
 
 
 def files(path):
@@ -62,7 +53,7 @@ def data_files():
 setup(
 	name="PyNetStation",
 	python_requires=">=3",
-	version="0.2", #pygaze.__version__,
+	version=pynetstation.__version__,
 	description="A Python library for use with the EGI Net Station EEG recording software.",
 	author=["Matthew Moore", "Joshua Zosky"],
 	author_email="matthew.moore@auckland.ac.nz",

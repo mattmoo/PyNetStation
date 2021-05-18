@@ -1,8 +1,0 @@
-
-version: 0.2
-author: 
-  - "Joshua Zosky"
-  - "Matthew Moore"
-url: "https://github.com/imnotamember/Pynetstation-Plug-In"
-category: "PyNetstation"
-date: "2021"
