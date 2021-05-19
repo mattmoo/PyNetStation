@@ -78,8 +78,8 @@ class pynetstation_init(item):
 				if(self.experiment.get('threadoption')=='Threaded'):
 					import pynetstation.threaded as pynetstation
 				else:
-					import pynetstation.fake as pynetstation
-					print('Fake Session!!!!!!!!!!!!')
+					import pynetstation.dummy as pynetstation
+					print('**************Dummy Session**************')
 				self.experiment.pynetstation = pynetstation
 				ms_localtime = self.experiment.pynetstation.ms_localtime
 				self.experiment.ns = self.experiment.pynetstation.Netstation()

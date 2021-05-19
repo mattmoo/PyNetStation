@@ -9,7 +9,7 @@ ms_localtime = internal.ms_localtime
 
 def Print(*args, **kwargs):
     write = sys.stdout.write
-    write(" Netstation [fake]: ")
+    write(" Netstation [dummy]: ")
     for arg in args: write(repr(arg))
     for (k, v) in kwargs.items(): write("%s=%s" % (k, v))
     write('\n')
@@ -34,7 +34,7 @@ class Netstation:
             pass
         else:
             raise RuntimeError(
-                'There is no (fake) connection to Netstation, make sure you Initialized or Re-Initialized one.')
+                'There is no (dummy) connection to Netstation, make sure you Initialized or Re-Initialized one.')
 
     def enumerate_responses(self):
         self.checkExists()

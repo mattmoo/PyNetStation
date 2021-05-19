@@ -14,8 +14,8 @@ controls:
     options:
       - Threaded
       - Simple
-      - Faker!
-    tooltip: "Select if you want to use Threaded connection with Net Station (faster/more reliable) or Simple connection (in case Threaded doesn't work)"
+      - Dummy
+    tooltip: "Select if you want to use Threaded connection with Net Station (faster/more reliable) or Simple connection (in case Threaded doesn't work). Dummy will accept input, but not attempt to output to a Net Station device (useful for development)."
     type: combobox
     var: threadoption
   - label: "Enter IP address"
