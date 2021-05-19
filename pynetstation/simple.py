@@ -86,7 +86,7 @@ class Eggog( Exception ) :
 
             ret = int( i )
             if ret != i : 
-				e = ValueError("conversion failed")
+                e = ValueError("conversion failed")
                 raise e
 
         except :
