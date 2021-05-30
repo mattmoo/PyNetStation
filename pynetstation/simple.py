@@ -795,8 +795,11 @@ class Netstation :
 
         ## self._connection.write( 'Q%s' % ( systemSpec, )  )     
         ## assert self.GetServerResponse() == True # " the quick-&-dirty way " // to-do: create an own exception     
+        print('Beginning session')
 
-        message = self._fmt.pack( 'Q', self._system_spec )
+        cmd = bytes('Q', "utf-8")
+        payload = bytes(self._system_spec, "utf-8")
+        message = self._fmt.pack( cmd, payload )
         self._socket.write( message )     
 
         # debug
